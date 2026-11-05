@@ -1,0 +1,13 @@
+{
+  "name": "Portal Demo",
+  "short_name": "Portal Demo",
+  "description": "Protótipo independente, não oficial.",
+  "start_url": "demo_habilitacao.html",
+  "display": "standalone",
+  "background_color": "#efefef",
+  "theme_color": "#071f45",
+  "icons": [
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
