@@ -234,6 +234,35 @@ const slidesFotos = fotos
       `<button class="foto" type="button" aria-label="Ampliar foto ${i + 1}" onclick="abrirFoto(${i})"><img src="${src}" alt="${alt}" decoding="async" style="object-position:${pos}"></button>`,
   )
   .join("");
+function ajustarTamanhoFotos() {
+  const imagens = document.querySelectorAll(".foto img");
+  if (!imagens.length) return;
+  const primeira = [...imagens].find(
+    (img) => img.naturalWidth && img.naturalHeight,
+  );
+  if (!primeira) return;
+  const largura = primeira.naturalWidth || 354;
+  const altura = primeira.naturalHeight || 472;
+  const maxLargura = Math.min(window.innerWidth - 32, largura);
+  const maxAltura = Math.min(window.innerHeight * 0.58, altura);
+  const proporcao = largura / altura;
+  const larguraFinal = Math.min(maxLargura, maxAltura * proporcao);
+  const alturaFinal = larguraFinal / proporcao;
+  document.documentElement.style.setProperty(
+    "--foto-largura",
+    `${Math.round(larguraFinal)}px`,
+  );
+  document.documentElement.style.setProperty(
+    "--foto-altura",
+    `${Math.round(alturaFinal)}px`,
+  );
+  document.documentElement.style.setProperty(
+    "--foto-ratio",
+    `${(largura / altura).toFixed(4)}`,
+  );
+}
+window.addEventListener("load", ajustarTamanhoFotos);
+window.addEventListener("resize", ajustarTamanhoFotos);
 const pagerDots = [0, 1, 2, 3]
   .map(
     (i) =>

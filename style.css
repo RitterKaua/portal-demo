@@ -393,9 +393,15 @@ input {
 }
 .galeria {
   position: absolute;
-  inset: 0 0 calc(104px + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: calc(112px + env(safe-area-inset-bottom));
   display: flex;
+  align-items: center;
+  justify-content: center;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -403,21 +409,27 @@ input {
   display: none;
 }
 .galeria-item {
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  width: min(100vw - 32px, 420px);
+  height: auto;
+  max-height: 72vh;
+  padding: 0;
   scroll-snap-align: center;
   scroll-snap-stop: always;
 }
 .galeria-item img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
   object-fit: contain;
+  object-position: center;
   border-radius: 10px;
+  background: #f1f1f1;
 }
 .galeria-pager {
   position: absolute;
@@ -738,10 +750,11 @@ body {
   max-width: 430px;
   margin: auto;
   height: 100%;
+  min-height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 .header {
   flex: none;
@@ -1044,8 +1057,10 @@ body {
 }
 .carousel {
   display: flex;
+  justify-content: center;
   gap: 12px;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -1053,21 +1068,26 @@ body {
   display: none;
 }
 .foto {
-  flex: 0 0 100%;
-  aspect-ratio: 354/472;
+  flex: 0 0 auto;
+  width: min(100vw - 32px, 420px);
+  height: auto;
+  max-height: none;
   padding: 0;
   border: 0;
   border-radius: 12px;
-  overflow: hidden;
-  background: #ddd;
+  overflow: visible;
+  background: transparent;
   cursor: zoom-in;
   scroll-snap-align: center;
 }
 .foto img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  background: #f1f1f1;
 }
 .pager {
   display: flex;
